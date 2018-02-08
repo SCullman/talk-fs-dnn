@@ -6,6 +6,10 @@
 ***
 ![](images/dnnsummit_logo.jpg)
 
+---
+
+![](images/dnnsummit_sponsors.jpg)
+
 ***
 
 ## F# |> DNN
