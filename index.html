@@ -110,22 +110,19 @@
 <div class="tip" id="fs62">Multiple items<br />module List<br /><br />from Microsoft.FSharp.Collections<br /><br />--------------------<br />type List&lt;&#39;T&gt; =<br />&#160;&#160;| ( [] )<br />&#160;&#160;| ( :: ) of Head: &#39;T * Tail: &#39;T list<br />&#160;&#160;interface IEnumerable<br />&#160;&#160;interface IEnumerable&lt;&#39;T&gt;<br />&#160;&#160;member GetSlice : startIndex:int option * endIndex:int option -&gt; &#39;T list<br />&#160;&#160;member Head : &#39;T<br />&#160;&#160;member IsEmpty : bool<br />&#160;&#160;member Item : index:int -&gt; &#39;T with get<br />&#160;&#160;member Length : int<br />&#160;&#160;member Tail : &#39;T list<br />&#160;&#160;static member Cons : head:&#39;T * tail:&#39;T list -&gt; &#39;T list<br />&#160;&#160;static member Empty : &#39;T list<br /><br />Full name: Microsoft.FSharp.Collections.List&lt;_&gt;</div>
 <div class="tip" id="fs63">val mapi : mapping:(int -&gt; &#39;T -&gt; &#39;U) -&gt; list:&#39;T list -&gt; &#39;U list<br /><br />Full name: Microsoft.FSharp.Collections.List.mapi</div>
 <div class="tip" id="fs64">val id : x:&#39;T -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.id</div>
-<div class="tip" id="fs65">namespace Microsoft.FSharp.Core</div>
-<div class="tip" id="fs66">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
-<div class="tip" id="fs67">type obj = Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
-<div class="tip" id="fs68">type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
-<div class="tip" id="fs69">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
-<div class="tip" id="fs70">type Attribute =<br />&#160;&#160;member Equals : obj:obj -&gt; bool<br />&#160;&#160;member GetHashCode : unit -&gt; int<br />&#160;&#160;member IsDefaultAttribute : unit -&gt; bool<br />&#160;&#160;member Match : obj:obj -&gt; bool<br />&#160;&#160;member TypeId : obj<br />&#160;&#160;static member GetCustomAttribute : element:MemberInfo * attributeType:Type -&gt; Attribute + 7 overloads<br />&#160;&#160;static member GetCustomAttributes : element:MemberInfo -&gt; Attribute[] + 15 overloads<br />&#160;&#160;static member IsDefined : element:MemberInfo * attributeType:Type -&gt; bool + 7 overloads<br /><br />Full name: System.Attribute</div>
+<div class="tip" id="fs65">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs66">val iter : action:(&#39;T -&gt; unit) -&gt; source:seq&lt;&#39;T&gt; -&gt; unit<br /><br />Full name: Microsoft.FSharp.Collections.Seq.iter</div>
+<div class="tip" id="fs67">namespace Microsoft.FSharp.Core</div>
+<div class="tip" id="fs68">Multiple items<br />val string : value:&#39;T -&gt; string<br /><br />Full name: Microsoft.FSharp.Core.Operators.string<br /><br />--------------------<br />type string = String<br /><br />Full name: Microsoft.FSharp.Core.string</div>
+<div class="tip" id="fs69">type obj = Object<br /><br />Full name: Microsoft.FSharp.Core.obj</div>
+<div class="tip" id="fs70">type unit = Unit<br /><br />Full name: Microsoft.FSharp.Core.unit</div>
+<div class="tip" id="fs71">type &#39;T option = Option&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.option&lt;_&gt;</div>
+<div class="tip" id="fs72">type Attribute =<br />&#160;&#160;member Equals : obj:obj -&gt; bool<br />&#160;&#160;member GetHashCode : unit -&gt; int<br />&#160;&#160;member IsDefaultAttribute : unit -&gt; bool<br />&#160;&#160;member Match : obj:obj -&gt; bool<br />&#160;&#160;member TypeId : obj<br />&#160;&#160;static member GetCustomAttribute : element:MemberInfo * attributeType:Type -&gt; Attribute + 7 overloads<br />&#160;&#160;static member GetCustomAttributes : element:MemberInfo -&gt; Attribute[] + 15 overloads<br />&#160;&#160;static member IsDefined : element:MemberInfo * attributeType:Type -&gt; bool + 7 overloads<br /><br />Full name: System.Attribute</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
-<section >
 <p><img src="images/dnnsummit_logo.jpg" alt="" /></p>
-</section>
-<section >
-<p><img src="images/dnnsummit_sponsors.jpg" alt="" /></p>
-</section>
 </section>
 <section >
 <section >
@@ -808,10 +805,49 @@ dotnet fable yarn-start
 </ul>
 </section>
 <section >
-<ul>
-<li>SPA? Or multiple SPAs on one page?</li>
-</ul>
-<p>DEMO</p>
+<h2>SPA? Or multiple SPAs on one page?</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">[<span class="i">AntiForgeryToken</span><span class="o">:</span> {}]   
+[<span class="i">JavaScript</span><span class="o">:</span>{<span class="i">path</span><span class="o">:</span> <span class="s">&quot;http://localhost:8080/bundle.js&quot;</span>, <span class="i">provider</span><span class="o">:</span><span class="s">&quot;DnnFormBottomProvider&quot;</span>}]
+<span class="o">&lt;</span><span class="i">div</span> <span class="k">class</span><span class="o">=</span><span class="s">&quot;elmish-module&quot;</span> <span class="i">data</span><span class="o">-</span><span class="i">moduleId</span> <span class="o">=</span> <span class="s">&quot;[ModuleContext:ModuleId]&quot;</span><span class="o">&gt;</span><span class="o">&lt;/</span><span class="i">div</span><span class="o">&gt;</span>
+</code></pre></td>
+</tr>
+</table>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span class="i">runApp</span> <span class="i">elementId</span> <span class="o">=</span>
+    <span class="i">Program</span><span class="o">.</span><span class="i">mkSimple</span> <span class="i">init</span> <span class="i">update</span> <span class="i">view</span>
+    <span class="o">|&gt;</span> <span class="i">Program</span><span class="o">.</span><span class="i">withReact</span> <span class="i">elementId</span>
+    <span class="o">|&gt;</span> <span class="i">Program</span><span class="o">.</span><span class="i">run</span>
+
+<span class="k">let</span> <span class="i">runApps</span> <span class="i">className</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="i">elements</span> <span class="o">=</span> <span class="i">document</span><span class="o">.</span><span class="i">getElementsByClassName</span> <span class="i">className</span>
+    <span class="k">let</span> <span class="i">runOnElement</span> <span class="i">index</span>  <span class="o">=</span>
+         <span class="k">let</span> <span class="i">elementId</span> <span class="o">=</span>  <span onmouseout="hideTip(event, 'fs6', 128)" onmouseover="showTip(event, 'fs6', 128)" class="i">sprintf</span> <span class="s">&quot;%s-%i&quot;</span> <span class="i">className</span> <span class="i">index</span>
+         <span class="i">elements</span><span class="o">.</span>[<span class="i">index</span>]<span class="o">.</span><span onmouseout="hideTip(event, 'fs64', 129)" onmouseover="showTip(event, 'fs64', 129)" class="i">id</span> <span class="o">&lt;-</span> <span class="i">elementId</span>
+         <span class="i">runApp</span> <span class="i">elementId</span>
+    <span onmouseout="hideTip(event, 'fs65', 130)" onmouseover="showTip(event, 'fs65', 130)" class="i">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs66', 131)" onmouseover="showTip(event, 'fs66', 131)" class="i">iter</span> (<span class="i">runOnElement</span>) [<span class="n">0</span> <span class="o">..</span> <span onmouseout="hideTip(event, 'fs2', 132)" onmouseover="showTip(event, 'fs2', 132)" class="i">int</span> <span class="i">elements</span><span class="o">.</span><span class="i">length</span> <span class="o">-</span> <span class="n">1</span>]
+
+<span class="i">runApps</span> <span class="s">&quot;elmish-module&quot;</span>
+</code></pre></td>
+</tr>
+</table>
 </section>
 <section >
 <h2>Modify webpack.config.js for HMR</h2>
@@ -866,18 +902,18 @@ dotnet fable yarn-start
 <span class="l">11: </span>
 <span class="l">12: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">Fable</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs65', 128)" onmouseover="showTip(event, 'fs65', 128)" class="i">Core</span>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="i">Fable</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs67', 133)" onmouseover="showTip(event, 'fs67', 133)" class="i">Core</span>
 
 <span class="k">type</span> <span class="i">IServicesFramework</span> <span class="o">=</span> 
-  <span class="k">abstract</span> <span class="i">getServiceRoot</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs66', 129)" onmouseover="showTip(event, 'fs66', 129)" class="i">string</span>     <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs66', 130)" onmouseover="showTip(event, 'fs66', 130)" class="i">string</span> 
-  <span class="k">abstract</span> <span class="i">setModuleHeaders</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs67', 131)" onmouseover="showTip(event, 'fs67', 131)" class="i">obj</span>      <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs68', 132)" onmouseover="showTip(event, 'fs68', 132)" class="i">unit</span>
-  <span class="k">abstract</span> <span class="i">getTabId</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs68', 133)" onmouseover="showTip(event, 'fs68', 133)" class="i">unit</span>            <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 134)" onmouseover="showTip(event, 'fs2', 134)" class="i">int</span> <span onmouseout="hideTip(event, 'fs69', 135)" onmouseover="showTip(event, 'fs69', 135)" class="i">option</span>
-  <span class="k">abstract</span> <span class="i">getModuleId</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs68', 136)" onmouseover="showTip(event, 'fs68', 136)" class="i">unit</span>         <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 137)" onmouseover="showTip(event, 'fs2', 137)" class="i">int</span> <span onmouseout="hideTip(event, 'fs69', 138)" onmouseover="showTip(event, 'fs69', 138)" class="i">option</span> 
-  <span class="k">abstract</span> <span class="i">getAntiForgeryValue</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs68', 139)" onmouseover="showTip(event, 'fs68', 139)" class="i">unit</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs66', 140)" onmouseover="showTip(event, 'fs66', 140)" class="i">string</span> <span onmouseout="hideTip(event, 'fs69', 141)" onmouseover="showTip(event, 'fs69', 141)" class="i">option</span>
+  <span class="k">abstract</span> <span class="i">getServiceRoot</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs68', 134)" onmouseover="showTip(event, 'fs68', 134)" class="i">string</span>     <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs68', 135)" onmouseover="showTip(event, 'fs68', 135)" class="i">string</span> 
+  <span class="k">abstract</span> <span class="i">setModuleHeaders</span><span class="o">:</span> <span onmouseout="hideTip(event, 'fs69', 136)" onmouseover="showTip(event, 'fs69', 136)" class="i">obj</span>      <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs70', 137)" onmouseover="showTip(event, 'fs70', 137)" class="i">unit</span>
+  <span class="k">abstract</span> <span class="i">getTabId</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs70', 138)" onmouseover="showTip(event, 'fs70', 138)" class="i">unit</span>            <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 139)" onmouseover="showTip(event, 'fs2', 139)" class="i">int</span> <span onmouseout="hideTip(event, 'fs71', 140)" onmouseover="showTip(event, 'fs71', 140)" class="i">option</span>
+  <span class="k">abstract</span> <span class="i">getModuleId</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs70', 141)" onmouseover="showTip(event, 'fs70', 141)" class="i">unit</span>         <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs2', 142)" onmouseover="showTip(event, 'fs2', 142)" class="i">int</span> <span onmouseout="hideTip(event, 'fs71', 143)" onmouseover="showTip(event, 'fs71', 143)" class="i">option</span> 
+  <span class="k">abstract</span> <span class="i">getAntiForgeryValue</span> <span class="o">:</span> <span onmouseout="hideTip(event, 'fs70', 144)" onmouseover="showTip(event, 'fs70', 144)" class="i">unit</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs68', 145)" onmouseover="showTip(event, 'fs68', 145)" class="i">string</span> <span onmouseout="hideTip(event, 'fs71', 146)" onmouseover="showTip(event, 'fs71', 146)" class="i">option</span>
   
 
 [&lt;<span class="i">Emit</span>(<span class="s">&quot;window[&#39;$&#39;].ServicesFramework($0)&quot;</span>)&gt;]
-<span class="k">let</span> <span class="i">ServiceFramework</span> (<span class="i">moduleid</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs2', 142)" onmouseover="showTip(event, 'fs2', 142)" class="i">int</span>) <span class="o">:</span> <span class="i">IServicesFramework</span>  <span class="o">=</span> <span class="i">jsNative</span>
+<span class="k">let</span> <span class="i">ServiceFramework</span> (<span class="i">moduleid</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs2', 147)" onmouseover="showTip(event, 'fs2', 147)" class="i">int</span>) <span class="o">:</span> <span class="i">IServicesFramework</span>  <span class="o">=</span> <span class="i">jsNative</span>
 </code></pre></td>
 </tr>
 </table>
@@ -901,7 +937,7 @@ dotnet fable yarn-start
 <span class="l">15: </span>
 </pre></td>
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span class="i">FableConfigAttribute</span> () <span class="o">=</span>
-  <span class="k">inherit</span> <span onmouseout="hideTip(event, 'fs45', 143)" onmouseover="showTip(event, 'fs45', 143)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs70', 144)" onmouseover="showTip(event, 'fs70', 144)" class="i">Attribute</span>()
+  <span class="k">inherit</span> <span onmouseout="hideTip(event, 'fs45', 148)" onmouseover="showTip(event, 'fs45', 148)" class="i">System</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs72', 149)" onmouseover="showTip(event, 'fs72', 149)" class="i">Attribute</span>()
 
   <span class="k">interface</span> <span class="i">IControllerConfiguration</span> <span class="k">with</span>
     <span class="k">member</span> <span class="i">__</span><span class="o">.</span><span class="i">Initialize</span> ((<span class="i">controllerSettings</span><span class="o">:</span><span class="i">HttpControllerSettings</span>), _) <span class="o">=</span>
@@ -921,12 +957,14 @@ dotnet fable yarn-start
 </section>
 </section>
 <section >
+<section >
 <h3>Thank you!</h3>
 <ul>
+<li><a href="https://fsprojects.github.io/Paket/">https://fsprojects.github.io/Paket/</a></li>
 <li><a href="https://fable.io">https://fable.io</a></li>
 <li><a href="https://github.com/fable-compiler/fable-elmish">https://github.com/fable-compiler/fable-elmish</a></li>
 <li><a href="https://ionide.io">https://ionide.io</a></li>
-<li><a href="http://fsprojects.github.io/SQLProvider/">http://fsprojects.github.io/SQLProvider/</a></li>
+<li><a href="https://fsprojects.github.io/SQLProvider/">https://fsprojects.github.io/SQLProvider/</a></li>
 <li><a href="https://github.com/rspeele/Rezoom.SQL">https://github.com/rspeele/Rezoom.SQL</a></li>
 <li><a href="https://fsprojects.github.io/FSharp.Configuration/ResXProvider.html">https://fsprojects.github.io/FSharp.Configuration/ResXProvider.html</a></li>
 <li><a href="https://github.com/bentayloruk/vscode-html-elmish">https://github.com/bentayloruk/vscode-html-elmish</a></li>
@@ -934,6 +972,10 @@ dotnet fable yarn-start
 <li><a href="https://gitter.im/fable-compiler/Fable">https://gitter.im/fable-compiler/Fable</a></li>
 <li><a href="https://github.com/tonsky/FiraCode">https://github.com/tonsky/FiraCode</a></li>
 </ul>
+</section>
+<section >
+<p><img src="images/swdddf.jpg" alt="" /></p>
+</section>
 </section>
 
 
