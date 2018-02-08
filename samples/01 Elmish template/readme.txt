@@ -1,6 +1,6 @@
 # Install template
 dotnet new -i Fable.Template.Elmish.React
-# Create  project
+# Create  projectdotnet -versii
 dotnet new fable-elmish-react -n awesome
 cd awesome
 # Install npm dependencies
