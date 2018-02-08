@@ -583,6 +583,19 @@ type FableController () =
   inherit DnnApiController ()
 ```
 
+---
+## Share Types and Functions
+
+Either reference a .fs from the WebApi project also in your Elmish project
+or use a NetStandard f# Class Lib and reference it from both projects.
+
+
+
+#### Yes, that's Universal F#
+
+
+
+
 *** 
 
 ### Thank you!
