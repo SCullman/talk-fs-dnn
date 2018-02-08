@@ -10,7 +10,7 @@ nuget Fable.Elmish.HMR
 
 nuget DotNetNuke.Core
 nuget DotNetNuke.Web
-//nuget Fable.JsonConverter 1.0.3
+nuget Fable.JsonConverter
 nuget Microsoft.AspNet.WebApi 
 nuget Newtonsoft.Json 
 

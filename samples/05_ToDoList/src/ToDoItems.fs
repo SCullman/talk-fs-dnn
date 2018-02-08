@@ -105,17 +105,20 @@ let inline onValueChange (changed:('s -> unit)) (ev:React.FormEvent)  =  changed
 
 let viewTask (item:ToDoItem) canEdit dispatch =
        
-  div [] [
-    yield input [
-      Type "checkbox"
-      Checked ( item.Complete)
-      Disabled ( not (canEdit || item.Complete  ))
-      OnChange (fun _ ->  dispatch (Complete item.Id))]
-    yield str item.Task
-    if canEdit then 
-      yield a [
+  div [ClassName "row"] [
+    div [ClassName "col-xs-8"][
+      input [
+        Type "checkbox"
+        Checked ( item.Complete)
+        Disabled ( not (canEdit || item.Complete  ))
+        OnChange (fun _ ->  dispatch (Complete item.Id))]
+      str item.Task ]
+    div [ClassName "col-xs-4"][
+      if canEdit then 
+        yield a [
             ClassName "btn btn-xs btn-default"
             OnClick (fun _ -> dispatch (Delete item.Id))][str "delete" ]
+    ]
   ]
 
 let viewNewTask (task: string option) dispatch =

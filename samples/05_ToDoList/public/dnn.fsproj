@@ -58,9 +58,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="JsonConverter.fs" />
     <Compile Include="SharedTypes.fs" />
-    <Compile Include="Database.fs" />
+    <Compile Include="Logic.fs" />
     <Compile Include="Controller.fs" />
     <None Include="manifest.dnn" />
     <None Include="..\public\index.html" />

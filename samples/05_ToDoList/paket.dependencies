@@ -2,6 +2,7 @@ source https://nuget.org/api/v2
 storage:none
 
 nuget FSharp.Core
+
 nuget Fable.Core
 nuget Fable.Elmish.React
 nuget Fable.Elmish.Browser
@@ -10,9 +11,7 @@ nuget Fable.Elmish.HMR
 
 nuget DotNetNuke.Core
 nuget DotNetNuke.Web
-nuget Fable.JsonConverter
 nuget Microsoft.AspNet.WebApi 
-//nuget SQLProvider
-//nuget Dapper
+nuget Fable.JsonConverter
 
 clitool dotnet-fable

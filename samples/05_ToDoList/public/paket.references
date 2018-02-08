@@ -1,4 +1,4 @@
 DotNetNuke.Core
 DotNetNuke.Web
 Microsoft.AspNet.WebApi
-//Fable.JsonConverter
+Fable.JsonConverter
