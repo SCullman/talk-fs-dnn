@@ -11,7 +11,7 @@ type Person = {
 let persons = [
     {Name="Stefan"; Package= Skiing}
     {Name="Erik"; Package= Snowmobiling}
-    {Name="Peter"; Package= Skiing} ]
+    {Name="Shaun"; Package= Skiing} ]
 
 persons
 |> List.filter (fun p -> p.Name.Contains "r" )
