@@ -576,6 +576,23 @@ type FableController () =
 
 ### Thank you!
 
+* https://fable.io
 * https://github.com/fable-compiler/fable-elmish
 * https://ionide.io
-* https://facebook.github.io/react-native/
+
+TypeProviders
+* http://fsprojects.github.io/SQLProvider/
+* https://github.com/rspeele/Rezoom.SQL
+* https://fsprojects.github.io/FSharp.Configuration/ResXProvider.html
+
+Html to Elmish
+* https://github.com/bentayloruk/vscode-html-elmish
+
+Safe Stack
+* https://safe-stack.github.io/
+
+Gitter
+* https://gitter.im/fable-compiler/Fable
+
+Fira Code (Font)
+* https://github.com/tonsky/FiraCode

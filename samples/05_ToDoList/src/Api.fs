@@ -25,11 +25,10 @@ type Client (moduleId) =
                     Fetch.requestHeaders (ContentType "application/json" :: headers)
                     Credentials RequestCredentials.Sameorigin
                     Body !^(toJson cmd) ]               
-      do Fetch.fetch url props|> ignore
+      let! response = Fetch.fetch url props
+      if not response.Ok then failwith response.StatusText
       return cmd
     }
-
-
 
   let query (query:Query) = 
     promise {
