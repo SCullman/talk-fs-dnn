@@ -4,87 +4,50 @@
 - transition : default
 
 ***
+![](images/dnnsummit_logo.jpg)
+
+***
 
 ## F# |> DNN
 
 <br />
 <br />
-
-### Experiences in using F# for DNN
-
+### Using F# for DNN development
+#### (With a focus on Fable/Elmish)
 <br />
 <br />
-Stefan Cullmann - [@scullman](http://www.twitter.com/scullman)
-
+Stefan Cullmann   
+<br />
 Berlin, Germany
 
-***
+---
+ <img src="images/gsomix.png" style="background: transparent; border-style: none;"  width=450 />
 
-### My DNN Resume
+ * I am not an F# Expert 
 
-* former DNN Core Team Member,
-* DNN MVP in 2017
-* I did a few WebForm modules, e.g.
-    * User Defined Table / Form and List,
-    * Xml Module,
-* was involved in a few core changes, e.g.
-    * Token Replace
-* and did a few talks
-    * Open-Force, Dnn-Europe, Dnn-Connect
 
 ---
 
-### My daily business
+### My Job
 
-* Head of IT (small team)
-* 100% inhouse development
-    * Training & qualification in the field of Non-Destructive Testing
+* Head of IT 
+* Very small team
+* Inhouse development only
+    * Training & qualification 
     * Certification
     * Conferences and Seminars
-* Sometimes PO, sometimes architect, less often developer
 
 ---
 
-### Shift of Interests
 
 * Focus on solving problems
-   * (formerly) by writing code: apps, modules
 * Exploring and analysing the business domain
 * Adapting and improving business processes
-* Applying DDD methods
-    * CQRS/ES
-    * Event Storming
+
 
 
 
 ---
-### Lessons learned 
-
-* DNN is an awesome application host
-* Put separate concerns/ bounded contexts into own modules
-* Avoid dependencies, especially to DNN
-    * put them into its own assembly
-    * decouple as much as possible
-* DRY is often  harmful
-
----
-
-### Lessons learned 
-#### ... outside the core domain
-
-* Try to avoid coding
-* Use existing tools wherever reasonable, e.g.
-   * 2sxc Content, 
-   * Open Content, 
-   * DNN-Sharp tools,
-   * Liquid Content,
-   * (Form and List)
-   * Add your favourite tool ....
-
----
-
-### Lessons learned    
-#### ... within the core domain
 
 * Software development is a learning process,    
 working code is a side effect
@@ -93,6 +56,18 @@ working code is a side effect
 
 <img src="images/eventstorming.png" width="800"  style="background: transparent; border-style: none;"/>
 
+---
+
+
+* DNN is still an awesome application host
+* Put separate concerns/ bounded contexts into own modules
+
+* Avoid coding outside your core domain and 
+use existing tools whenever reasonable, e.g.
+   * 2sxc Content, 
+   * Open Content, 
+   * DNN-Sharp tools,
+   * Liquid Content,
 
 
 ---
@@ -100,7 +75,7 @@ working code is a side effect
 
  <img src="images/gsomix.png" style="background: transparent; border-style: none;"  width=400 />
 
- * I am not an F# Expert or Evangelist
+ * I am not an F# Expert 
 
 ***
 
@@ -153,8 +128,9 @@ working code is a side effect
 
 Source: [Eight reasons to learn F#](https://medium.com/real-world-fsharp/eight-reasons-to-learn-f-fcb2bef64d7a)
 
----
+***
 
+![](images/fsharp256.png)
 ## F# Primer in < 5 minutes
 
 ---
@@ -180,10 +156,9 @@ let text = helloWorld "DNN-Summit"
 ### Types
 
 ```fsharp
-open System
 
 // Tuples are first class citizens in F#
-let person = Tuple.Create("Stefan", 50)
+let person = ("Stefan", 50)
 let personShortHand = "Stefan", 50 // string * int
 let name, age = personShortHand // decompose the tuple 
 
@@ -344,6 +319,25 @@ x = 10 // false, COMPARISON!!!
 #### Build Fable apps following the Elm architecture (Model View Update)
 
 ---
+## Fable-Elmish
+
+```powershell
+# Install template
+dotnet new -i Fable.Template.Elmish.React
+# Create  project
+dotnet new fable-elmish-react -n awesome
+cd awesome
+# Install npm dependencies
+yarn install
+cd src
+# Install dotnet dependencies
+dotnet restore
+# Start Fable server and Webpack dev server
+dotnet fable yarn-start
+# In your browser, open: http://localhost:8080/
+```
+
+---
 ### Model - View - Update
 
 #### "Elm - Architecture"
@@ -480,30 +474,103 @@ x = 10 // false, COMPARISON!!!
 ![](images/dnn-logo.png)
 ## And now within DNN
 
+---
 <br/><br/>
-#### Nice
+### DNN and F#?
+
+![alt](images/Suspicious.png)
+
+---
+
+### DNN and F#!
+
+![](images/friends.jpg)
+
 
 
 ---
 
-### First steps
+###  Simple DNN Spa module 
 
-* Simple DNN Spa module 
-* During developemnt, link to script on webpackageserver
+```
+
+[AntiForgeryToken: {}]   
+[JavaScript:{ 
+   path: "http://localhost:8080/bundle.js", 
+   provider:"DnnFormBottomProvider"}]
+<div id="elmish-todo" data-moduleId = "[ModuleContext:ModuleId]"></div>
+
+```
+
+* During development, link to script on webpackageserver
+
+---
 * SPA? Or multiple SPAs on one page?
 
-* Take care on unwanted page refreshes:
-  * Modify webpack.config.js for HMR
-  * Button events - stop bubbling
+DEMO
 
 ---
 
-*** 
+## Modify webpack.config.js for HMR
 
-### TakeAways
+```javascript
 
-* Learn all the FP you can!
-* Simple modular design
+  module.exports = {
+  devtool: "source-map",
+  entry: resolve('./src/elmish.fsproj'),
+  output: {
+    filename: 'bundle.js',
+    path: resolve('./public'),
+    publicPath: 'http://localhost:8080/',
+  },
+  devServer: {
+    contentBase: resolve('./public'),
+    headers: { "Access-Control-Allow-Origin": "*" },
+    port: 8080,
+    hot: true,
+    inline: true
+  },
+  ...
+  ```
+---
+### JS-Interop with Dnn ServicesFramework
+
+```
+open Fable.Core
+
+type IServicesFramework = 
+  abstract getServiceRoot: string     -> string 
+  abstract setModuleHeaders: obj      -> unit
+  abstract getTabId : unit            -> int option
+  abstract getModuleId : unit         -> int option 
+  abstract getAntiForgeryValue : unit -> string option
+  
+
+[<Emit("window['$'].ServicesFramework($0)")>]
+let ServiceFramework (moduleid:int) : IServicesFramework  = jsNative
+```
+
+---
+
+## Use Fable.JsonConverter within WebApi
+
+```
+type FableConfigAttribute () =
+  inherit System.Attribute()
+
+  interface IControllerConfiguration with
+    member __.Initialize ((controllerSettings:HttpControllerSettings), _) =
+        let fableFormatter = 
+           JsonMediaTypeFormatter ( 
+             SerializerSettings = JsonSerializerSettings (
+                Converters = [|Fable.JsonConverter()|]))
+        controllerSettings.Formatters.Clear ()
+        controllerSettings.Formatters.Add fableFormatter
+
+[<FableConfig>]
+type FableController () =
+  inherit DnnApiController ()
+```
 
 *** 
 
