@@ -25,7 +25,6 @@ Berlin, Germany
 
  * I am not an F# Expert 
 
-
 ---
 
 ### My Job
@@ -44,9 +43,6 @@ Berlin, Germany
 * Exploring and analysing the business domain
 * Adapting and improving business processes
 
-
-
-
 ---
 
 * Software development is a learning process,    
@@ -54,7 +50,7 @@ working code is a side effect
 * Focus on the core domain
 * Keep the implementation as close as possible to your understanding
 
-<img src="images/eventstorming.png" width="800"  style="background: transparent; border-style: none;"/>
+<img src="images/event-storming.png" width="800"  style="background: transparent; border-style: none;"/>
 
 ---
 
@@ -68,14 +64,6 @@ use existing tools whenever reasonable, e.g.
    * Open Content, 
    * DNN-Sharp tools,
    * Liquid Content,
-
-
----
-### Disclaimer
-
- <img src="images/gsomix.png" style="background: transparent; border-style: none;"  width=400 />
-
- * I am not an F# Expert 
 
 ***
 
@@ -398,11 +386,6 @@ dotnet fable yarn-start
 
 ---
 
-### Model - View - Update
-
-# Demo
-
-***
 
 ### Sub-Components
 
@@ -505,9 +488,33 @@ dotnet fable yarn-start
 * During development, link to script on webpackageserver
 
 ---
-* SPA? Or multiple SPAs on one page?
+## SPA? Or multiple SPAs on one page?
 
-DEMO
+```
+
+[AntiForgeryToken: {}]   
+[JavaScript:{path: "http://localhost:8080/bundle.js", provider:"DnnFormBottomProvider"}]
+<div class="elmish-module" data-moduleId = "[ModuleContext:ModuleId]"></div>
+
+```
+
+```
+let runApp elementId =
+    Program.mkSimple init update view
+    |> Program.withReact elementId
+    |> Program.run
+
+let runApps className =
+    let elements = document.getElementsByClassName className
+    let runOnElement index  =
+         let elementId =  sprintf "%s-%i" className index
+         elements.[index].id <- elementId
+         runApp elementId
+    Seq.iter (runOnElement) [0 .. int elements.length - 1]
+
+runApps "elmish-module"
+```
+
 
 ---
 
@@ -576,23 +583,19 @@ type FableController () =
 
 ### Thank you!
 
+* https://fsprojects.github.io/Paket/ 
 * https://fable.io
 * https://github.com/fable-compiler/fable-elmish
 * https://ionide.io
-
-TypeProviders
-* http://fsprojects.github.io/SQLProvider/
+* https://fsprojects.github.io/SQLProvider/
 * https://github.com/rspeele/Rezoom.SQL
 * https://fsprojects.github.io/FSharp.Configuration/ResXProvider.html
-
-Html to Elmish
 * https://github.com/bentayloruk/vscode-html-elmish
-
-Safe Stack
 * https://safe-stack.github.io/
-
-Gitter
 * https://gitter.im/fable-compiler/Fable
-
-Fira Code (Font)
 * https://github.com/tonsky/FiraCode
+
+
+----
+
+![](images/swdddf.jpg)
